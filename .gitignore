@@ -1,7 +1,7 @@
 # Logs
 logs
 .idea
-static/output.css
+public/static/output.css
 *.log
 npm-debug.log*
 yarn-debug.log*

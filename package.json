@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "yarn build:tailwind && MODE=local vite",
     "build": "tsc && vite build",
     "build:tailwind": "yarn tailwindcss -i ./src/index.css -o ./dist/static/output.css",
     "preview": "vite preview"
@@ -45,7 +45,8 @@
     "tailwindcss-animate": "^1.0.5",
     "tslib": "^2.5.0",
     "typescript": "^5.0.4",
-    "vite": "4.0.0"
+    "vite": "4.0.0",
+    "vite-plugin-static-copy": "^0.15.0"
   },
   "workspaces": [
     "packages/gql-client"
