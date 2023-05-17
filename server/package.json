@@ -1,0 +1,28 @@
+{
+  "name": "@taranek/db-sync-server",
+  "version": "1.0.0",
+  "description": "Simple proxy server.",
+  "main": "index.ts",
+  "scripts": {
+    "build": "yarn tsc",
+    "start": "node dist/index.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+  },
+  "author": "Tomasz Taranek",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-http-proxy": "^1.6.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/express-http-proxy": "^1.6.3",
+    "@types/node": "^20.1.7",
+    "concurrently": "^8.0.1",
+    "nodemon": "^2.0.22",
+    "typescript": "^5.0.4"
+  }
+}

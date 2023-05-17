@@ -1,0 +1,13 @@
+mutation deleteFromIssuesCollection($filter: IssuesFilter, $atMost: Int!) {
+    deleteFromIssuesCollection(filter: $filter, atMost: $atMost){
+        affectedCount
+        records{
+            nodeId
+            id
+            created_at
+            title
+            description
+            priority
+        }
+    }
+}

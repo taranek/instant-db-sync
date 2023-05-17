@@ -1,0 +1,12 @@
+mutation insertIntoUsersCollection($objects: [UsersInsertInput!]!) {
+    insertIntoUsersCollection(objects: $objects){
+        affectedCount
+        records{
+            nodeId
+            id
+            created_at
+            first_name
+            last_name
+        }
+    }
+}

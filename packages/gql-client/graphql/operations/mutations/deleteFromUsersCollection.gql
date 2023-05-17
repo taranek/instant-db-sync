@@ -1,0 +1,12 @@
+mutation deleteFromUsersCollection($filter: UsersFilter, $atMost: Int!) {
+    deleteFromUsersCollection(filter: $filter, atMost: $atMost){
+        affectedCount
+        records{
+            nodeId
+            id
+            created_at
+            first_name
+            last_name
+        }
+    }
+}

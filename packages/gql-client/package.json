@@ -1,0 +1,24 @@
+{
+  "name": "@taranek/gql-client",
+  "version": "1.0.0",
+  "scripts": {
+    "schema:fetch": "node fetchGraphqlSchema.js",
+    "gql-docs": "yarn gqlg --schemaFilePath ./graphql/schema/schema.graphql --destDirPath graphql/operations",
+    "codegen": "yarn gql-docs && graphql-codegen --config codegen.ts"
+  },
+  "main": "index.ts",
+  "type": "commonjs",
+  "devDependencies": {
+    "@graphql-codegen/cli": "3.3.1",
+    "@graphql-codegen/gql-tag-operations-preset": "^2.1.0",
+    "@graphql-codegen/typescript-graphql-request": "^4.5.9",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
+    "@types/node": "^18.16.0",
+    "cross-undici-fetch": "^0.4.14",
+    "dotenv": "^16.0.3",
+    "gqlg": "^1.0.2",
+    "gradient-string": "^2.0.2",
+    "graphql": "^16.6.0",
+    "progress": "^2.0.3"
+  }
+}

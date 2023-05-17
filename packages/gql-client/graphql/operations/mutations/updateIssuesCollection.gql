@@ -1,0 +1,13 @@
+mutation updateIssuesCollection($set: IssuesUpdateInput!, $filter: IssuesFilter, $atMost: Int!) {
+    updateIssuesCollection(set: $set, filter: $filter, atMost: $atMost){
+        affectedCount
+        records{
+            nodeId
+            id
+            created_at
+            title
+            description
+            priority
+        }
+    }
+}

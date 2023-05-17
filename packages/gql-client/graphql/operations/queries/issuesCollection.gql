@@ -1,0 +1,21 @@
+query issuesCollection($first: Int, $last: Int, $before: Cursor, $after: Cursor, $filter: IssuesFilter, $orderBy: [IssuesOrderBy!]) {
+    issuesCollection(first: $first, last: $last, before: $before, after: $after, filter: $filter, orderBy: $orderBy){
+        edges{
+            cursor
+            node{
+                nodeId
+                id
+                created_at
+                title
+                description
+                priority
+            }
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

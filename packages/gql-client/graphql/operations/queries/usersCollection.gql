@@ -1,0 +1,20 @@
+query usersCollection($first: Int, $last: Int, $before: Cursor, $after: Cursor, $filter: UsersFilter, $orderBy: [UsersOrderBy!]) {
+    usersCollection(first: $first, last: $last, before: $before, after: $after, filter: $filter, orderBy: $orderBy){
+        edges{
+            cursor
+            node{
+                nodeId
+                id
+                created_at
+                first_name
+                last_name
+            }
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

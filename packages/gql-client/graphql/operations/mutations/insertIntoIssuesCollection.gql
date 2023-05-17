@@ -1,0 +1,13 @@
+mutation insertIntoIssuesCollection($objects: [IssuesInsertInput!]!) {
+    insertIntoIssuesCollection(objects: $objects){
+        affectedCount
+        records{
+            nodeId
+            id
+            created_at
+            title
+            description
+            priority
+        }
+    }
+}
