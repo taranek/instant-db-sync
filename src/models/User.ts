@@ -6,7 +6,7 @@ import { observed, unique } from "../decorators/unique";
 
 const userUpdater: PropertyUpdater<User> = (user, property, newValue) => {
   console.log("filter user", user);
-  console.log("instance keys", Object.keys(user));
+  //console.log("instance keys", Object.keys(user));
   sdkClient.updateUsersCollection({
     filter: {
       id: {
