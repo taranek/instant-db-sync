@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "yarn build:tailwind && MODE=local vite",
     "build": "tsc && vite build",
-    "build:tailwind": "yarn tailwindcss -i ./src/index.css -o ./dist/static/output.css && cp ./dist/static/output.css ./public/static/output.css",
+    "build:tailwind": "yarn tailwindcss -i ./src/index.css -o ./dist/static/output.css && mkdir -p ./public/static && cp ./dist/static/output.css ./public/static/output.css",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -11,10 +11,12 @@
   "author": "Tomasz Taranek",
   "license": "ISC",
   "dependencies": {
+    "@supabase/supabase-js": "^2.22.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "express-http-proxy": "^1.6.3"
+    "express-http-proxy": "^1.6.3",
+    "supabase": "^1.61.5"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
