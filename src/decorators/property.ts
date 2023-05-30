@@ -1,5 +1,3 @@
-import "reflect-metadata";
-
 export type PropertyUpdater<T> = (
   target: T,
   property: keyof T,

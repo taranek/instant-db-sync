@@ -1,4 +1,3 @@
-import "reflect-metadata";
 import { Model } from "../models/Model";
 
 type UniqueKeyName = string;

@@ -11,7 +11,7 @@ function App() {
   useColorScheme();
   return (
     <RootStoreContext.Provider value={rootStore}>
-      <IssuesPage />;
+      <IssuesPage />
     </RootStoreContext.Provider>
   );
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import 'reflect-metadata';
 
 
 import App from "./App";
