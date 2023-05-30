@@ -7,6 +7,7 @@ mutation deleteFromUsersCollection($filter: UsersFilter, $atMost: Int!) {
             created_at
             first_name
             last_name
+            avatar_url
         }
     }
 }

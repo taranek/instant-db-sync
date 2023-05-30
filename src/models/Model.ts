@@ -1,31 +1,34 @@
-import { v4 as uuid } from "uuid";
-import { EntityId } from "./base";
+import { getEntityIdentifier } from "./base";
 import { PropertyUpdater } from "../decorators";
+import { cloneDeep } from "lodash-es";
 import { ObjectPoolStore } from "../stores/ObjectPoolStore";
-export class Model {
-  id: EntityId;
+import { __UNIQUE_KEY__SYMBOL__, UniqueObject } from "../decorators/unique";
+
+export class Model implements UniqueObject {
+  [__UNIQUE_KEY__SYMBOL__]: string | null;
   constructor() {
-    this.id = uuid();
-    if (!window._pool) {
-      window._pool = {};
-    }
-    window._pool[this.id] = this;
+    this[__UNIQUE_KEY__SYMBOL__] = null;
+  }
+  getUniquePropertyKey() {
+    return this[__UNIQUE_KEY__SYMBOL__];
+  }
+  setUniquePropertyKey(key: string) {
+    this[__UNIQUE_KEY__SYMBOL__] = key;
   }
 }
 
-export type WithModelId<T> = T & {
-  id?: EntityId;
-};
-
-export const updaterHandlerProxy = (
+export const updaterHandlerProxy = <T extends Model>(
   updaterFn: PropertyUpdater<any>,
   pool: ObjectPoolStore
 ) => ({
-  set(obj, prop, value) {
+  //@ts-ignore
+  set(obj, prop: string, value: unknown) {
     console.log(`Property ${prop} changed from: ${obj[prop]} to ${value}`);
     updaterFn(obj, prop, value);
     const reflected = Reflect.set(obj, prop, value);
-    pool[obj.id] = { ...obj };
+    const uniqueProperty = getEntityIdentifier(obj);
+    const objectIdentifier = obj[uniqueProperty];
+    pool[objectIdentifier as keyof ObjectPoolStore] = cloneDeep(obj);
     return reflected;
   },
 });

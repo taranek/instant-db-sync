@@ -1,29 +1,10 @@
 import { decorateInstance, Model } from "./Model";
 import { Issues as IssueNode } from "@taranek/gql-client";
-import { PropertyUpdater } from "../decorators";
 import { sdkClient } from "../gql/apolloClient";
 import { observed, unique } from "../decorators/unique";
-import { makeAutoObservable } from "mobx";
-import { ObjectPoolStore, WithPoolStore } from "../stores/ObjectPoolStore";
-
-const issueUpdater: PropertyUpdater<Issue> = (issue, property, newValue) => {
-  console.log("filter issue", issue);
-  //console.log("instance keys", Object.keys(issue));
-  sdkClient.updateIssuesCollection({
-    filter: {
-      id: {
-        eq: issue.id,
-      },
-    },
-    set: {
-      [property]: newValue,
-    },
-    atMost: 1,
-  });
-
-};
-
-export class Issue {
+import { WithPoolStore } from "../stores/ObjectPoolStore";
+import { createModelUpdater } from "./base";
+export class Issue extends Model {
   created_at?: IssueNode["created_at"];
   @observed
   title?: IssueNode["title"];
@@ -42,14 +23,18 @@ export class Issue {
     priority,
     objectPoolStore,
   }: WithPoolStore<IssueNode>) {
+    super();
     this.id = id;
     this.created_at = created_at;
     this.description = description;
     this.title = title;
     this.priority = priority;
-    makeAutoObservable(this)
-    const decorated = decorateInstance(this, issueUpdater, objectPoolStore);
-    objectPoolStore.registerProperty(id, decorated)
+    const decorated = decorateInstance(
+      this,
+      createModelUpdater(sdkClient.updateIssuesCollection),
+      objectPoolStore
+    );
+    objectPoolStore.registerProperty(id, decorated);
     return decorated;
   }
 }

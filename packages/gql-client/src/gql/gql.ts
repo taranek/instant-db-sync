@@ -367,6 +367,7 @@ export type UuidFilter = {
 
 export type Users = Node & {
   __typename?: 'Users';
+  avatar_url?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['Datetime']>;
   first_name?: Maybe<Scalars['String']>;
   id: Scalars['BigInt'];
@@ -396,6 +397,7 @@ export type UsersEdge = {
 };
 
 export type UsersFilter = {
+  avatar_url?: InputMaybe<StringFilter>;
   created_at?: InputMaybe<DatetimeFilter>;
   first_name?: InputMaybe<StringFilter>;
   id?: InputMaybe<BigIntFilter>;
@@ -404,6 +406,7 @@ export type UsersFilter = {
 };
 
 export type UsersInsertInput = {
+  avatar_url?: InputMaybe<Scalars['String']>;
   created_at?: InputMaybe<Scalars['Datetime']>;
   first_name?: InputMaybe<Scalars['String']>;
   last_name?: InputMaybe<Scalars['String']>;
@@ -418,6 +421,7 @@ export type UsersInsertResponse = {
 };
 
 export type UsersOrderBy = {
+  avatar_url?: InputMaybe<OrderByDirection>;
   created_at?: InputMaybe<OrderByDirection>;
   first_name?: InputMaybe<OrderByDirection>;
   id?: InputMaybe<OrderByDirection>;
@@ -425,6 +429,7 @@ export type UsersOrderBy = {
 };
 
 export type UsersUpdateInput = {
+  avatar_url?: InputMaybe<Scalars['String']>;
   created_at?: InputMaybe<Scalars['Datetime']>;
   first_name?: InputMaybe<Scalars['String']>;
   last_name?: InputMaybe<Scalars['String']>;
@@ -452,7 +457,7 @@ export type DeleteFromUsersCollectionMutationVariables = Exact<{
 }>;
 
 
-export type DeleteFromUsersCollectionMutation = { __typename?: 'Mutation', deleteFromUsersCollection: { __typename?: 'UsersDeleteResponse', affectedCount: number, records: Array<{ __typename?: 'Users', nodeId: string, id: any, created_at?: any | null, first_name?: string | null, last_name?: string | null }> } };
+export type DeleteFromUsersCollectionMutation = { __typename?: 'Mutation', deleteFromUsersCollection: { __typename?: 'UsersDeleteResponse', affectedCount: number, records: Array<{ __typename?: 'Users', nodeId: string, id: any, created_at?: any | null, first_name?: string | null, last_name?: string | null, avatar_url?: string | null }> } };
 
 export type InsertIntoIssuesCollectionMutationVariables = Exact<{
   objects: Array<IssuesInsertInput> | IssuesInsertInput;
@@ -466,7 +471,7 @@ export type InsertIntoUsersCollectionMutationVariables = Exact<{
 }>;
 
 
-export type InsertIntoUsersCollectionMutation = { __typename?: 'Mutation', insertIntoUsersCollection?: { __typename?: 'UsersInsertResponse', affectedCount: number, records: Array<{ __typename?: 'Users', nodeId: string, id: any, created_at?: any | null, first_name?: string | null, last_name?: string | null }> } | null };
+export type InsertIntoUsersCollectionMutation = { __typename?: 'Mutation', insertIntoUsersCollection?: { __typename?: 'UsersInsertResponse', affectedCount: number, records: Array<{ __typename?: 'Users', nodeId: string, id: any, created_at?: any | null, first_name?: string | null, last_name?: string | null, avatar_url?: string | null }> } | null };
 
 export type UpdateIssuesCollectionMutationVariables = Exact<{
   set: IssuesUpdateInput;
@@ -484,7 +489,7 @@ export type UpdateUsersCollectionMutationVariables = Exact<{
 }>;
 
 
-export type UpdateUsersCollectionMutation = { __typename?: 'Mutation', updateUsersCollection: { __typename?: 'UsersUpdateResponse', affectedCount: number, records: Array<{ __typename?: 'Users', nodeId: string, id: any, created_at?: any | null, first_name?: string | null, last_name?: string | null }> } };
+export type UpdateUsersCollectionMutation = { __typename?: 'Mutation', updateUsersCollection: { __typename?: 'UsersUpdateResponse', affectedCount: number, records: Array<{ __typename?: 'Users', nodeId: string, id: any, created_at?: any | null, first_name?: string | null, last_name?: string | null, avatar_url?: string | null }> } };
 
 export type IssuesCollectionQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']>;
@@ -515,7 +520,7 @@ export type UsersCollectionQueryVariables = Exact<{
 }>;
 
 
-export type UsersCollectionQuery = { __typename?: 'Query', usersCollection?: { __typename?: 'UsersConnection', edges: Array<{ __typename?: 'UsersEdge', cursor: string, node: { __typename?: 'Users', nodeId: string, id: any, created_at?: any | null, first_name?: string | null, last_name?: string | null } }>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null } } | null };
+export type UsersCollectionQuery = { __typename?: 'Query', usersCollection?: { __typename?: 'UsersConnection', edges: Array<{ __typename?: 'UsersEdge', cursor: string, node: { __typename?: 'Users', nodeId: string, id: any, created_at?: any | null, first_name?: string | null, last_name?: string | null, avatar_url?: string | null } }>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null } } | null };
 
 
 export const DeleteFromIssuesCollectionDocument = gql`
@@ -543,6 +548,7 @@ export const DeleteFromUsersCollectionDocument = gql`
       created_at
       first_name
       last_name
+      avatar_url
     }
   }
 }
@@ -572,6 +578,7 @@ export const InsertIntoUsersCollectionDocument = gql`
       created_at
       first_name
       last_name
+      avatar_url
     }
   }
 }
@@ -601,6 +608,7 @@ export const UpdateUsersCollectionDocument = gql`
       created_at
       first_name
       last_name
+      avatar_url
     }
   }
 }
@@ -660,6 +668,7 @@ export const UsersCollectionDocument = gql`
         created_at
         first_name
         last_name
+        avatar_url
       }
     }
     pageInfo {

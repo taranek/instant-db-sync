@@ -6,15 +6,13 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "../components/card";
 import { cn, formatDate } from "../utils";
-import { Input } from "../components/input";
-import { Button } from "../components/button";
-import { Check } from "lucide-react";
 import { User } from "../models/User";
+import { Avatar, AvatarFallback, AvatarImage } from "../components/avatar";
+import { update } from "../stores/ObjectPoolStore";
 
 export const Users = observer(() => {
   const { usersStore } = useRootStore();
@@ -22,9 +20,30 @@ export const Users = observer(() => {
     usersStore.fetchUsers();
   }, []);
   const users = useObjectPoolData((r) => r.usersStore.users);
+  const issues = useObjectPoolData((r) => r.issuesStore.issues);
   console.log("[RENDERING] users", users);
   return (
     <div className={cn("grid grid-cols-5 gap-3")}>
+      <button
+        onClick={() => {
+          update(users[0], (user) => {
+            user.last_name = new Date().getMilliseconds().toString();
+            return user;
+          });
+        }}
+      >
+        mutate first user
+      </button>
+      <button
+        onClick={() => {
+          update(issues[0], (issue) => {
+            issue.title = new Date().getMilliseconds().toString();
+            return issue;
+          });
+        }}
+      >
+        mutate first issue
+      </button>
       {users.map((u) => (
         <UserCard user={u} />
       ))}
@@ -36,8 +55,14 @@ type CardProps = { user: User } & React.ComponentProps<typeof Card>;
 
 export function UserCard({ className, user, ...props }: CardProps) {
   return (
-    <Card className={cn("", className)} {...props}>
-      <CardHeader>
+    <Card className={cn("justify-center", className)} {...props}>
+      <CardHeader className="justify-center items-center">
+        <Avatar>
+          {user.avatar_url ? (
+            <AvatarImage src={user.avatar_url} alt="@shadcn" />
+          ) : null}
+          <AvatarFallback>CN</AvatarFallback>{" "}
+        </Avatar>
         <CardTitle>
           {user.first_name} {user.last_name}
         </CardTitle>

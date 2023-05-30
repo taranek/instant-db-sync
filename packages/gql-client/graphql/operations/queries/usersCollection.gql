@@ -8,6 +8,7 @@ query usersCollection($first: Int, $last: Int, $before: Cursor, $after: Cursor, 
                 created_at
                 first_name
                 last_name
+                avatar_url
             }
         }
         pageInfo{

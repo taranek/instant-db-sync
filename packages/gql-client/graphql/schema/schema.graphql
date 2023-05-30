@@ -405,6 +405,7 @@ type Users implements Node {
   created_at: Datetime
   first_name: String
   last_name: String
+  avatar_url: String
 }
 
 type UsersConnection {
@@ -430,6 +431,7 @@ input UsersFilter {
   created_at: DatetimeFilter
   first_name: StringFilter
   last_name: StringFilter
+  avatar_url: StringFilter
   nodeId: IDFilter
 }
 
@@ -437,6 +439,7 @@ input UsersInsertInput {
   created_at: Datetime
   first_name: String
   last_name: String
+  avatar_url: String
 }
 
 type UsersInsertResponse {
@@ -452,12 +455,14 @@ input UsersOrderBy {
   created_at: OrderByDirection
   first_name: OrderByDirection
   last_name: OrderByDirection
+  avatar_url: OrderByDirection
 }
 
 input UsersUpdateInput {
   created_at: Datetime
   first_name: String
   last_name: String
+  avatar_url: String
 }
 
 type UsersUpdateResponse {
