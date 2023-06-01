@@ -1,18 +1,12 @@
 import { decorateInstance, Model } from "./Model";
-import { Users as UserNode } from "@taranek/gql-client";
-import { PropertyUpdater } from "../decorators";
-import { sdkClient } from "../gql/apolloClient";
-import { observed, unique, UniqueObject } from "../decorators/unique";
+import { sdkClient } from "../gql/client";
+import { observed, unique } from "../decorators";
 import { WithPoolStore } from "../stores/ObjectPoolStore";
-import { makeAutoObservable, makeObservable } from "mobx";
 import { createModelUpdater } from "./base";
 
-interface WithId {
-  id: "123";
-}
-interface WithName {
-  last_name?: string | null;
-}
+type ConstructorParams = WithPoolStore<
+  Pick<User, "created_at" | "first_name" | "last_name" | "avatar_url" | "id">
+>;
 export class User extends Model {
   created_at?: string | null;
   @observed
@@ -31,7 +25,7 @@ export class User extends Model {
     last_name,
     avatar_url,
     objectPoolStore,
-  }: WithPoolStore<User>) {
+  }: ConstructorParams) {
     super();
     this.id = id;
     this.created_at = created_at;

@@ -2,10 +2,10 @@ import { getEntityIdentifier } from "./base";
 import { PropertyUpdater } from "../decorators";
 import { cloneDeep } from "lodash-es";
 import { ObjectPoolStore } from "../stores/ObjectPoolStore";
-import { __UNIQUE_KEY__SYMBOL__, UniqueObject } from "../decorators/unique";
+import { __UNIQUE_KEY__SYMBOL__ } from "../decorators/unique";
 
-export class Model implements UniqueObject {
-  [__UNIQUE_KEY__SYMBOL__]: string | null;
+export class Model {
+  protected [__UNIQUE_KEY__SYMBOL__]: string | null;
   constructor() {
     this[__UNIQUE_KEY__SYMBOL__] = null;
   }

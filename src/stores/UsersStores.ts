@@ -1,5 +1,5 @@
-import { computed, makeAutoObservable, observable } from "mobx";
-import { apolloClient, sdkClient } from "../gql/apolloClient";
+import { makeAutoObservable, observable } from "mobx";
+import { sdkClient } from "../gql/client";
 import { ObjectPoolStore } from "./ObjectPoolStore";
 import { User } from "../models/User";
 

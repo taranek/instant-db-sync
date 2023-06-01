@@ -1,7 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { Issues } from "@taranek/gql-client";
 import { formatDate } from "../utils";
-import { Button } from "../components/button";
 import {
   Select,
   SelectContent,
@@ -10,9 +8,9 @@ import {
   SelectValue,
 } from "../components/select";
 import { update } from "../stores/ObjectPoolStore";
-import { runInAction } from "mobx";
+import { Issue } from "../models/Issue";
 
-export const columns: ColumnDef<Issues>[] = [
+export const columns: ColumnDef<Issue>[] = [
   {
     accessorKey: "created_at",
     header: "Created",
@@ -35,7 +33,7 @@ export const columns: ColumnDef<Issues>[] = [
             value={`${rowData.priority}`}
             onValueChange={(value) => {
               const prio = parseInt(value, 10);
-              update<Issues>(rowData, (r) => {
+              update<Issue>(rowData, (r) => {
                 r.priority = prio;
                 return r;
               });

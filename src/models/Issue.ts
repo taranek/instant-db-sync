@@ -1,7 +1,7 @@
 import { decorateInstance, Model } from "./Model";
 import { Issues as IssueNode } from "@taranek/gql-client";
-import { sdkClient } from "../gql/apolloClient";
-import { observed, unique } from "../decorators/unique";
+import { sdkClient } from "../gql/client";
+import { observed, unique } from "../decorators";
 import { WithPoolStore } from "../stores/ObjectPoolStore";
 import { createModelUpdater } from "./base";
 export class Issue extends Model {

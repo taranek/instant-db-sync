@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { useRootStore } from "../hooks/useRootStore";
 import React, { useEffect } from "react";
-import { useObjectPoolData } from "../hooks/useObjectPoolData";
+import { useObjectPoolCollection } from "../hooks/useObjectPoolCollection";
 import {
   Card,
   CardContent,
@@ -19,8 +19,8 @@ export const Users = observer(() => {
   useEffect(() => {
     usersStore.fetchUsers();
   }, []);
-  const users = useObjectPoolData((r) => r.usersStore.users);
-  const issues = useObjectPoolData((r) => r.issuesStore.issues);
+  const users = useObjectPoolCollection((r) => r.usersStore.users);
+  const issues = useObjectPoolCollection((r) => r.issuesStore.issues);
   console.log("[RENDERING] users", users);
   return (
     <div className={cn("grid grid-cols-5 gap-3")}>

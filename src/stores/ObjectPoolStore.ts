@@ -16,7 +16,10 @@ export function update<T extends Model>(
 ) {
   runInAction(() => {
     const entityIdentifierKey = getEntityIdentifier(entity);
-    const entityIdentifier = entity[entityIdentifierKey];
+    // TODO: nasty type casting
+    const entityIdentifier = entity[
+      entityIdentifierKey as keyof typeof entity
+    ] as keyof typeof window._pool;
     const poolEntity = window._pool[entityIdentifier];
     window._pool[entityIdentifier] = updater(poolEntity as T);
   });
@@ -26,14 +29,16 @@ export function update<T extends Model>(
 
 export class ObjectPoolStore {
   constructor() {
+    window._pool = {};
     makeAutoObservable(this);
   }
 
-  registerProperty(id: string, value: unknown) {
+  // TODO: fix any and type casting
+  registerProperty(id: string, value: any) {
     this[id as keyof ObjectPoolStore] = value;
     makeObservable(this, {
       [id as keyof ObjectPoolStore]: observable,
     });
-    window._pool[id] = this[id];
+    window._pool[id] = this[id as keyof ObjectPoolStore];
   }
 }

@@ -1,16 +1,12 @@
 import { Model } from "./Model";
 import { PropertyUpdater } from "../decorators";
-import { sdkClient } from "../gql/apolloClient";
-import { User } from "./User";
-import { throwServerError } from "@apollo/client";
-
-export type EntityId = string;
+import { sdkClient } from "../gql/client";
 
 type UpdateQuery =
   | typeof sdkClient.updateIssuesCollection
   | typeof sdkClient.updateUsersCollection;
 
-export const getEntityIdentifier = (entity: Model): string => {
+export const getEntityIdentifier = <T extends Model>(entity: T): keyof T => {
   const prototype: Model = Object.getPrototypeOf(entity);
   if (!prototype) {
     console.error("Could not resolve prototype for", entity);
@@ -21,7 +17,7 @@ export const getEntityIdentifier = (entity: Model): string => {
       cause: `${entity} has no identifier`,
     });
   }
-  return uniqueProperty;
+  return uniqueProperty as keyof T;
 };
 export const createModelUpdater =
   <T extends Model>(updateQuery: UpdateQuery): PropertyUpdater<T> =>

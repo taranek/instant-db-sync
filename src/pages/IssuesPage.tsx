@@ -3,17 +3,13 @@ import { columns } from "../issues/columns";
 import { observer } from "mobx-react-lite";
 import { useRootStore } from "../hooks/useRootStore";
 import { useEffect } from "react";
-import { Button } from "../components/button";
-import { RootStore } from "../stores/RootStore";
-import { Model } from "../models/Model";
 import { Separator } from "../components/separator";
 import { Users } from "../molecules/Users";
-import { useObjectPoolData } from "../hooks/useObjectPoolData";
+import { useObjectPoolCollection } from "../hooks/useObjectPoolCollection";
 
 export const IssuesPage = observer(() => {
-  const { issuesStore, objectPoolStore } = useRootStore();
-  const issues = useObjectPoolData((r) => r.issuesStore.issues);
-  const { counter } = issuesStore;
+  const { issuesStore } = useRootStore();
+  const issues = useObjectPoolCollection((r) => r.issuesStore.issues);
   console.log("[RENDERING] issues => ", issues);
   useEffect(() => {
     issuesStore.fetchIssues();

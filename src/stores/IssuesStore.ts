@@ -1,13 +1,11 @@
-import { computed, makeAutoObservable, observable } from "mobx";
-import { apolloClient, sdkClient } from "../gql/apolloClient";
+import { makeAutoObservable, observable } from "mobx";
+import { sdkClient } from "../gql/client";
 import { Issue } from "../models/Issue";
 import { ObjectPoolStore } from "./ObjectPoolStore";
 
 export class IssuesStore {
   @observable
   issues: Issue[] = [];
-  @observable
-  counter = 0;
   objectPoolStore: ObjectPoolStore;
   constructor(objectPoolStore: ObjectPoolStore) {
     makeAutoObservable(this);
@@ -23,8 +21,5 @@ export class IssuesStore {
           objectPoolStore: this.objectPoolStore,
         })
     );
-  }
-  increaseCounter() {
-    this.counter = this.counter + 1;
   }
 }

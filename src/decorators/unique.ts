@@ -13,10 +13,5 @@ export const getUniquePropertyName = (entity: UniqueObject) => {
 
 export const unique = (target: Model, propertyKey: UniqueKeyName) => {
   const prototype = Object.getPrototypeOf(target);
-  console.log("unique", prototype);
   target.setUniquePropertyKey(propertyKey);
-};
-
-export const observed = (target: any, propertyKey: string) => {
-  target[propertyKey] = true;
 };
