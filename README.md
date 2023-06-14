@@ -1,5 +1,12 @@
 # instant-db-sync
 
+
+## Live demo 
+Please note that it is still in WIP stage (you may find a lot of unused and cluttered code):
+
+https://instant-db-sync-client.onrender.com/
+
+
 # Client code generation
 
 How it works:
@@ -33,10 +40,6 @@ If you want to update a DB entity, just mutate it in `update` function:
 ```
 An appriopriate gql request shall be triggered to the server over http (websockets communication coming soon).
 
-
-# Live demo 
-Please note that it is still in WIP stage (you may find a lot of unused and cluttered code)
-https://instant-db-sync-client.onrender.com/
 
 # Things that need to be done
 - real time update using gql subscriptions or supabase subscription
