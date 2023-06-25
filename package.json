@@ -47,7 +47,8 @@
     "tailwindcss-animate": "^1.0.5",
     "tslib": "^2.5.0",
     "typescript": "^5.0.4",
-    "vite": "4.0.0"
+    "vite": "4.0.0",
+    "vite-plugin-compression": "^0.5.1"
   },
   "workspaces": [
     "packages/gql-client"
